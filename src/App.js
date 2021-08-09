@@ -22,6 +22,8 @@ import SignUp from "./Pages/SignUp";
 import PageNotFound from "./Pages/PageNotFound";
 import { UserContext } from "./Context/UserContext";
 import SignIn from "./Pages/SignIn";
+import Footer from "./Layout/Footer";
+import Header from "./Layout/Header";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -30,12 +32,15 @@ const App = () => {
     <Router>
       <ToastContainer />
       <UserContext.Provider value={{ user, setUser }}>
+        <Header />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/signin" component={SignIn} />
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="*" component={PageNotFound} />
         </Switch>
+
+        <Footer />
       </UserContext.Provider>
     </Router>
   );
