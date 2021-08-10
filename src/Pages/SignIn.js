@@ -8,7 +8,7 @@ import {
   Col,
   Input,
   Row,
-  Card, 
+  Card,
   CardBody,
   CardFooter,
   CardHeader,
@@ -16,7 +16,7 @@ import {
 
 import firebase from "firebase/app";
 import { UserContext } from "../Context/UserContext";
-import {Redirect}  from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const SignIn = () => {
@@ -29,9 +29,9 @@ const SignIn = () => {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then( res => {
-        console.log(res)
-        context.setUser({email: res.user.email, uid: res.user.uid})
+      .then((res) => {
+        console.log(res);
+        context.setUser({ email: res.user.email, uid: res.user.uid });
       })
       .catch((error) => {
         console.log(error);
@@ -41,64 +41,64 @@ const SignIn = () => {
       });
   };
 
-  const handleSubmit = e => {
-    e.preventDefault()
-    handleSignUp()
-  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleSignUp();
+  };
 
   if (context.user?.uid) {
-    return <Redirect to="/" />
+    return <Redirect to="/" />;
   }
   return (
-		<Container className='text-center'>
-			<Row>
-				<Col lg={6} className='offset-lg-3 mt-5'>
-					<Card>
-						<Form onSubmit={handleSubmit}>
-							<CardHeader className=''>Sign Up here</CardHeader>
-							<CardBody>
-								<FormGroup row>
-									<Label for='email' sm={3}>
-										Email
-									</Label>
-									<Col sm={9}>
-										<Input
-											type='email'
-											name='email'
-											id='email'
-											placeholder='provide your email'
-											value={email}
-											onChange={e => setEmail(e.target.value)}
-										/>
-									</Col>
-								</FormGroup>
-								<FormGroup row>
-									<Label for='password' sm={3}>
-										Password
-									</Label>
-									<Col sm={9}>
-										<Input
-											type='password'
-											name='password'
-											id='password'
-											placeholder='your password here'
-											value={password}
-											onChange={e => setPassword(e.target.value)}
-										/>
-									</Col>
-								</FormGroup>
-							</CardBody>
-							<CardFooter>
-								<Button type='submit' block color='primary'>
-									Sign In
-								</Button>
-							</CardFooter>
-						</Form>
-					</Card>
-				</Col>
-			</Row>
-		</Container>
-	);
+    <Container className="text-center">
+      <Row>
+        <Col lg={6} className="offset-lg-3 mt-5">
+          <Card>
+            <Form onSubmit={handleSubmit}>
+              <CardHeader className="">Sign In here</CardHeader>
+              <CardBody>
+                <FormGroup row>
+                  <Label for="email" sm={3}>
+                    Email
+                  </Label>
+                  <Col sm={9}>
+                    <Input
+                      type="email"
+                      name="email"
+                      id="email"
+                      placeholder="provide your email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </Col>
+                </FormGroup>
+                <FormGroup row>
+                  <Label for="password" sm={3}>
+                    Password
+                  </Label>
+                  <Col sm={9}>
+                    <Input
+                      type="password"
+                      name="password"
+                      id="password"
+                      placeholder="your password here"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                  </Col>
+                </FormGroup>
+              </CardBody>
+              <CardFooter>
+                <Button type="submit" block color="primary">
+                  Sign In
+                </Button>
+              </CardFooter>
+            </Form>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
+  );
 };
 
 export default SignIn;
